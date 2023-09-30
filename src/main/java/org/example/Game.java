@@ -8,7 +8,7 @@ public class Game {
 
     private final Board board;
 
-    private BoardConsoleRendering renderer = new BoardConsoleRendering();
+    private BoardConsoleRenderer renderer = new BoardConsoleRenderer();
 
 
     public Game(Board board) {

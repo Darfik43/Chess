@@ -6,7 +6,7 @@ import java.util.Set;
 
 import static java.util.Collections.emptySet;
 
-public class BoardConsoleRendering {
+public class BoardConsoleRenderer {
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_WHITE_PIECE_COLOR = "\u001B[97m";
@@ -17,6 +17,7 @@ public class BoardConsoleRendering {
     public static final String ANSI_BLACK_SQUARE_BACKGROUND = "\u001B[0;100m";
 
     public static final String ANSI_HIGHLIGHTED_SQUARE_BACKGROUND = "\u001B[45m";
+
     public void render(Board board, Piece pieceToMove) {
         Set<Coordinates> availableMoveSquares = emptySet();
         if (pieceToMove != null) {
@@ -28,12 +29,14 @@ public class BoardConsoleRendering {
             for (File file : File.values()) {
                 Coordinates coordinates = new Coordinates(file, rank);
                 boolean isHighlight = availableMoveSquares.contains(coordinates);
+
                 if (board.isSquareEmpty(coordinates)) {
                     line += getSpriteForEmptySquare(coordinates, isHighlight);
                 } else {
                     line += getPieceSprite(board.getPiece(coordinates), isHighlight);
                 }
             }
+
             line += ANSI_RESET;
             System.out.println(line);
         }
@@ -44,7 +47,7 @@ public class BoardConsoleRendering {
     }
 
     private String colorizeSprite(String sprite, Color pieceColor, boolean isSquareDark, boolean isHighlight) {
-        //format = back color + font color + text
+        // format = background color + font color + text
         String result = sprite;
 
         if (pieceColor == Color.WHITE) {
@@ -52,18 +55,20 @@ public class BoardConsoleRendering {
         } else {
             result = ANSI_BLACK_PIECE_COLOR + result;
         }
-        if (isHighlight == true) {
+
+        if (isHighlight) {
             result = ANSI_HIGHLIGHTED_SQUARE_BACKGROUND + result;
         } else if (isSquareDark) {
             result = ANSI_BLACK_SQUARE_BACKGROUND + result;
         } else {
             result = ANSI_WHITE_SQUARE_BACKGROUND + result;
         }
+
         return result;
     }
 
     private String getSpriteForEmptySquare(Coordinates coordinates, boolean isHighlight) {
-        return colorizeSprite("   ", Color.BLACK, Board.isSquareDark(coordinates), isHighlight);
+        return colorizeSprite("   ", Color.WHITE, Board.isSquareDark(coordinates), isHighlight);
     }
 
     private String selectUnicodeSpriteForPiece(Piece piece) {
