@@ -7,11 +7,11 @@ public class Chess {
 
         Board board = (new BoardFactory()).fromFEN(
                 //"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-                "4k3/8/5n2/2N5/3B4/8/8/3K4 w - - 0 1"
+                "3k4/p7/8/8/R7/8/P7/3K4 w - - 0 1"
         );
 
         BoardConsoleRendering renderer = new BoardConsoleRendering();
-        renderer.render(board);
+//        renderer.render(board);
 //
 //        Piece piece = board.getPiece(new Coordinates(File.G, 8));
 //        Set<Coordinates> availableMoveSquares = piece.getAvailableMoveSquares(board);
