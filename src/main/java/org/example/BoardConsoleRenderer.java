@@ -68,7 +68,7 @@ public class BoardConsoleRenderer {
     }
 
     private String getSpriteForEmptySquare(Coordinates coordinates, boolean isHighlight) {
-        return colorizeSprite("   ", Color.WHITE, Board.isSquareDark(coordinates), isHighlight);
+        return colorizeSprite("    ", Color.WHITE, Board.isSquareDark(coordinates), isHighlight);
     }
 
     private String selectUnicodeSpriteForPiece(Piece piece) {
